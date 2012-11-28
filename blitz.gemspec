@@ -5,13 +5,16 @@
 
 Gem::Specification.new do |s|
   s.name = %q{blitz}
-  s.version = "0.1.19"
+  s.version = "0.1.29"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["pcapr"]
-  s.date = %q{2011-11-29}
+  s.date = %q{2012-11-13}
   s.default_executable = %q{blitz}
-  s.description = %q{Make load and performance testing a fun sport}
+  s.description = <<-EOF
+    Command-line interface and Ruby client library for Blitz.io.
+    Make load and performance testing a fun sport.
+  EOF
   s.email = %q{support@blitz.io}
   s.executables = ["blitz"]
   s.extra_rdoc_files = [
@@ -21,7 +24,6 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     "Gemfile",
-    "Gemfile.lock",
     "LICENSE.txt",
     "README.md",
     "Rakefile",
@@ -37,13 +39,21 @@ Gem::Specification.new do |s|
     "lib/blitz/command/help.rb",
     "lib/blitz/command/traceroute.rb",
     "lib/blitz/command/version.rb",
+    "lib/blitz/curl.rb",
     "lib/blitz/curl/error.rb",
     "lib/blitz/curl/rush.rb",
     "lib/blitz/curl/sprint.rb",
     "lib/blitz/helper.rb",
     "lib/blitz/traceroute.rb",
     "lib/blitz/traceroute/error.rb",
-    "spec/command/curl_spec.rb",
+    "lib/blitz/utils.rb",
+    "spec/blitz/client_spec.rb",
+    "spec/blitz/command/api_spec.rb",
+    "spec/blitz/command/curl_spec.rb",
+    "spec/blitz/curl/rush_spec.rb",
+    "spec/blitz/curl/sprint_spec.rb",
+    "spec/blitz/curl_spec.rb",
+    "spec/spec_helper.rb",
     "test/helper.rb",
     "test/test_blitz.rb"
   ]
@@ -53,7 +63,13 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.6.2}
   s.summary = %q{Make load and performance testing a fun sport}
   s.test_files = [
-    "spec/command/curl_spec.rb",
+    "spec/blitz/client_spec.rb",
+    "spec/blitz/command/api_spec.rb",
+    "spec/blitz/command/curl_spec.rb",
+    "spec/blitz/curl/rush_spec.rb",
+    "spec/blitz/curl/sprint_spec.rb",
+    "spec/blitz/curl_spec.rb",
+    "spec/spec_helper.rb",
     "test/helper.rb",
     "test/test_blitz.rb"
   ]
@@ -67,22 +83,20 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<json>, [">= 1.5.1"])
       s.add_runtime_dependency(%q<json_pure>, [">= 1.5.1"])
       s.add_runtime_dependency(%q<hexy>, ["~> 0.1.1"])
-      s.add_runtime_dependency(%q<rspec>, [">= 2.6.0"])
-      s.add_runtime_dependency(%q<rspec-core>, [">= 2.6.4"])
       s.add_runtime_dependency(%q<term-ansicolor>, [">= 1.0.5"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.5.1"])
+      s.add_runtime_dependency(%q<rake>, [">= 0.9.0"])
+      s.add_development_dependency(%q<bundler>, ["~> 1.1.0"])
+      s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
     else
       s.add_dependency(%q<couchrest>, ["~> 1.0.1"])
       s.add_dependency(%q<rest-client>, ["~> 1.6.1"])
       s.add_dependency(%q<json>, [">= 1.5.1"])
       s.add_dependency(%q<json_pure>, [">= 1.5.1"])
       s.add_dependency(%q<hexy>, ["~> 0.1.1"])
-      s.add_dependency(%q<rspec>, [">= 2.6.0"])
-      s.add_dependency(%q<rspec-core>, [">= 2.6.4"])
       s.add_dependency(%q<term-ansicolor>, [">= 1.0.5"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.5.1"])
+      s.add_dependency(%q<rake>, [">= 0.9.0"])
+      s.add_dependency(%q<bundler>, ["~> 1.1.0"])
+      s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
     end
   else
     s.add_dependency(%q<couchrest>, ["~> 1.0.1"])
@@ -90,11 +104,10 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<json>, [">= 1.5.1"])
     s.add_dependency(%q<json_pure>, [">= 1.5.1"])
     s.add_dependency(%q<hexy>, ["~> 0.1.1"])
-    s.add_dependency(%q<rspec>, [">= 2.6.0"])
-    s.add_dependency(%q<rspec-core>, [">= 2.6.4"])
     s.add_dependency(%q<term-ansicolor>, [">= 1.0.5"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.5.1"])
+    s.add_dependency(%q<rake>, [">= 0.9.0"])
+    s.add_dependency(%q<bundler>, ["~> 1.1.0"])
+    s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
   end
 end
 

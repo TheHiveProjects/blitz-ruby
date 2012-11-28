@@ -3,10 +3,11 @@ require 'term/ansicolor'
 require 'couchrest'
 require 'hexy'
 require 'pp'
+require 'csv'
 
 class Blitz # :nodoc:
     require 'blitz/helper'
-    Version = "0.1.19"
+    Version = "0.1.25"
         
     extend Blitz::Helper
     
@@ -32,6 +33,7 @@ require 'blitz/client'
 require 'blitz/curl/error'
 require 'blitz/curl/sprint'
 require 'blitz/curl/rush'
+require 'blitz/curl'
 require 'blitz/traceroute'
 require 'blitz/traceroute/error'
 require 'blitz/command'
